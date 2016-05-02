@@ -60,4 +60,10 @@ describe('full page tests', function() {
     done();
   })
 
+  it('list', function(done) {
+    var data = parser(fetch("list"));
+    console.log(data)
+    done();
+  })
+
 })

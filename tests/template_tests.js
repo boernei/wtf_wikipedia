@@ -2,6 +2,8 @@
 var parse_table = require("../src/parse/parse_table");
 var parse_disambig = require("../src/parse/parse_disambig");
 var parse_infobox = require("../src/parse/parse_infobox");
+var parse_list = require("../src/parse/parse_list");
+
 let hurricane = `{{Infobox Hurricane
 | Name=Tropical Storm Edouard
 | Type=Tropical storm
@@ -76,3 +78,31 @@ describe("parse_table", function() {
     done();
   });
 });
+
+
+let list = `{{columns-list|3| 
+*[[Mary Anne à Beckett]] (1817–1863)
+*[[Michel van der Aa]] (born 1970)
+*[[Thorvald Aagaard]] (1877–1937)
+*[[Hector Ayala|Héctor Ayala]] (1914–1990)
+*[[Nat Ayer]] (1887–1952)
+*[[Florence Aylward]] (1862–1950)
+*[[Ayuo]] (born 1960)
+*[[Frederick Ayres]] (1876–1926)
+*[[Azalais de Porcairagues]] (fl. mid-12th century)
+*[[Svitlana Azarova]] (born 1976)
+*[[Filippo Azzaiolo]] (fl. 1557–1569)
+}}
+`;
+
+describe("parse_list", function() {
+  it("list", function(done) {
+    let arr = parse_list(list);
+    // arr.length.should.be.equal(3);
+    // arr[0][0].should.be.equal("#");
+    // arr[1][0].should.be.equal("1");
+    // arr[1][1].should.be.equal("April 6");
+    done();
+  });
+});
+

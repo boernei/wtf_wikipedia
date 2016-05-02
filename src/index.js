@@ -19,6 +19,7 @@ var wtf_wikipedia = (function() {
   var recursive_matches = require("./recursive_matches");
   var preprocess = require("./parse/cleanup_misc");
   var word_templates = require("./word_templates");
+  var parse_list = require("./parse/parse_list");
 
   //some xml elements are just junk, and demand full inglorious death by regular exp
   //other xml elements, like <em>, are plucked out afterwards
@@ -27,6 +28,7 @@ var wtf_wikipedia = (function() {
     var infobox_template = "";
     var images = [];
     var tables;
+    var lists = [];
     var translations = {};
     wiki = wiki || "";
     //detect if page is just redirect, and return
@@ -51,11 +53,17 @@ var wtf_wikipedia = (function() {
     //remove tables
     wiki = wiki.replace(/\{\|[\s\S]{1,8000}?\|\}/g, "");
 
+
     //reduce the scary recursive situations
     //remove {{template {{}} }} recursions
     var matches = recursive_matches("{", "}", wiki);
     var infobox_reg = new RegExp("\{\{(" + i18n.infoboxes.join("|") + ")[: \n]", "ig");
+
+
+    var list_reg = new RegExp("\{\{(columns-list)", "ig");
+
     matches.forEach(function(s) {
+
       if (s.match(infobox_reg, "ig") && Object.keys(infobox).length === 0) {
         infobox = parse_infobox(s);
         infobox_template = parse_infobox_template(s);
@@ -63,12 +71,17 @@ var wtf_wikipedia = (function() {
       if (s.match(infobox_reg)) {
         wiki = wiki.replace(s, "");
       }
+
+      if (s.match(list_reg, "ig")) {
+           lists.push(parse_list(s));
+      }
       //if it's not a known template, but it's recursive, remove it
       //(because it will be misread later-on)
       if (s.match(/^\{\{/)) {
         wiki = wiki.replace(s, "");
       }
     });
+
 
     //second, remove [[file:...[[]] ]] recursions
     matches = recursive_matches("[", "]", wiki);
@@ -168,6 +181,7 @@ var wtf_wikipedia = (function() {
       infobox: infobox,
       infobox_template: infobox_template,
       tables: tables,
+      lists:lists,
       translations: translations
     };
 
