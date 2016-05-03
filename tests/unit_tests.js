@@ -79,10 +79,10 @@ describe("parse_categories", function() {
 
 describe("parse_image", function() {
   let tests = [
-    ["[[File:Tony Danza]]", "File:Tony Danza"],
-    ["[[Image:Tony Danza]]", "Image:Tony Danza"],
-    ["[[Image:Tony Danza|left]]", "Image:Tony Danza"],
-    ["[[Image:Edouard Recon (2002).jpg|right|thumb|200px|Tropical Storm Edouard seen by [[Hurricane Hunters]]]]", "Image:Edouard Recon (2002).jpg"],
+    ["[[File:Tony Danza]]", "File:Tony_Danza"],
+    ["[[Image:Tony Danza]]", "Tony_Danza"],
+    ["[[Image:Tony Danza|left]]", "Tony_Danza"],
+    ["[[Image:Edouard Recon (2002).jpg|right|thumb|200px|Tropical Storm Edouard seen by [[Hurricane Hunters]]]]", "Edouard_Recon_(2002).jpg"],
   ];
   tests.forEach(function(t) {
     it(t[0], function(done) {
