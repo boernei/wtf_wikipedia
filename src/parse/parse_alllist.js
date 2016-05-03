@@ -18,6 +18,7 @@ var parse_alllist = function (wiki) {
       console.log("listitem " + str)
 
       if (inlist) {
+        str = str.replace(/^\*/, "");
         var line = parse_line(str)
         curList.push(line);
       }
