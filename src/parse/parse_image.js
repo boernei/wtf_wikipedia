@@ -7,6 +7,7 @@ function parse_image(img) {
   img = img[0].replace(/[\|\]]$/, "");
   img = img.replace(/\s+/g, '_');
   img = img.replace("Image:", '');
+  img = img.replace("File:", '');
   return img;
 }
 module.exports = parse_image;
