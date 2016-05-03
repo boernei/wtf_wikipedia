@@ -73,7 +73,7 @@ var wtf_wikipedia = (function() {
       }
 
       if (s.match(list_reg, "ig")) {
-           lists.push(parse_list(s));
+          lists.push(parse_list(s));
       }
       //if it's not a known template, but it's recursive, remove it
       //(because it will be misread later-on)
