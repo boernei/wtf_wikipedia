@@ -37,8 +37,11 @@ var parse_alllist = function (wiki) {
         inlist = false;
         curHeading = curHeading.replace(/\=\=/, "");
         curHeading = curHeading.replace(/\=\=/, "");
+        curHeading = curHeading.replace(/\=/, "");
+        curHeading = curHeading.replace(/\=/, "");
         curHeading = curHeading.replace(/\=\= /, "");
         curHeading = curHeading.replace(/ \=\=/, "");
+        curHeading = curHeading.replace(/\s+/g, '_');
         alllist[curHeading] = curList;
       }
     }
