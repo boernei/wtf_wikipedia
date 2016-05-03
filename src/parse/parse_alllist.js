@@ -44,6 +44,7 @@ var parse_alllist = function (wiki) {
         curHeading = curHeading.replace(";", "");
         curHeading = curHeading.replace(":", "");
         curHeading = curHeading.replace(/\s+/g, '_');
+        curHeading = curHeading.toLowerCase();
         alllist[encodeURI(curHeading)] = curList;
       }
     }
