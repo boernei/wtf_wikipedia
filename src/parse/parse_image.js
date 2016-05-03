@@ -5,9 +5,6 @@ function parse_image(img) {
   var reg = new RegExp("(" + i18n.images.concat(i18n.files).join("|") + "):.*?[\\|\\]]", "i");
   img = img.match(reg) || [""];
   img = img[0].replace(/[\|\]]$/, "");
-  img = img.replace(/\s+/g, '_');
-  img = img.replace("Image:", '');
-  img = img.replace("File:", '');
   return img;
 }
 module.exports = parse_image;
