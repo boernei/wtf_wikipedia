@@ -35,6 +35,8 @@ var parse_alllist = function (wiki) {
     else {
       if (inlist) { // end of curLis
         inlist = false;
+        curHeading = curHeading.replace(/\=\=/, "");
+        curHeading = curHeading.replace(/\=\=/, "");
         curHeading = curHeading.replace(/\=\= /, "");
         curHeading = curHeading.replace(/ \=\=/, "");
         alllist[curHeading] = curList;
