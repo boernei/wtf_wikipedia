@@ -20,7 +20,6 @@ var parse_list = function (wiki) {
         list.push(line);
      }
   });
-  console.log(list)
   return list
 };
 module.exports = parse_list;

@@ -2,7 +2,6 @@ var helpers = require("../lib/helpers");
 var parse_line = require("./parse_line");
 
 var parse_alllist = function (wiki) {
-  console.log("alllists")
   var alllist = {};
   var lines = wiki.replace(/\r/g, '').split(/\n/);
 
@@ -15,7 +14,6 @@ var parse_alllist = function (wiki) {
 
     //list item
     if (str.startsWith("*")) {
-      console.log("listitem " + str)
 
       if (inlist) {
         str = str.replace(/^\*/, "");
@@ -52,7 +50,6 @@ var parse_alllist = function (wiki) {
     linecounter++;
 
   });
-  console.log(alllist)
   return alllist
 };
 module.exports = parse_alllist;
