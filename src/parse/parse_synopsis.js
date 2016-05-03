@@ -11,7 +11,6 @@ var parse_synopsis = function (wiki) {
 
   lines.forEach(function (str) {
 
-     linecounter++;
 
      if (linecounter > 5)
      {
@@ -20,8 +19,10 @@ var parse_synopsis = function (wiki) {
      }
      else
      {
+        linecounter++;
         var line = parse_line(str)
-        synopsis.push(line);
+        if(line.text && line.text.length > 100)
+            synopsis.push(line);
      }
   });
 
