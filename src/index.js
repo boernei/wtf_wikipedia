@@ -21,6 +21,7 @@ var wtf_wikipedia = (function() {
   var word_templates = require("./word_templates");
   var parse_list = require("./parse/parse_list");
   var parse_alllist = require("./parse/parse_alllist");
+  var parse_synopsis = require("./parse/parse_synopsis");
 
   //some xml elements are just junk, and demand full inglorious death by regular exp
   //other xml elements, like <em>, are plucked out afterwards
@@ -31,6 +32,7 @@ var wtf_wikipedia = (function() {
     var tables;
     var lists = [];
     var alllists;
+    var synopsis;
     var translations = {};
     wiki = wiki || "";
     //detect if page is just redirect, and return
@@ -46,6 +48,8 @@ var wtf_wikipedia = (function() {
     wiki = word_templates(wiki);
     //kill off th3 craziness
     wiki = preprocess(wiki);
+
+    synopsis = parse_synopsis(wiki);
 
     //find tables
     tables = wiki.match(/\{\|[\s\S]{1,8000}?\|\}/g, "") || [];
@@ -187,6 +191,7 @@ var wtf_wikipedia = (function() {
       tables: tables,
       lists:lists,
       alllists:alllists,
+      synopsis:synopsis,
       translations: translations
     };
 
